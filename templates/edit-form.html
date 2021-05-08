@@ -7,6 +7,16 @@ Edit Form
 {% block content %}
 
 <h2>Edit User</h2>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <section class="messages">
+        {% for msg in messages %}
+        <p class="bg-danger text-light p-2">{{msg}}</p>
+        {% endfor %}
+    </section>
+    {% endif %}
+{% endwith %}
+
 <form action="/users/{{user.id}}/edit" method="POST">
     <div class="row">
         <h4>First Name:</h3>

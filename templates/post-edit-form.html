@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit Post
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center">Edit Post</h1>
+<form action="/posts/{{post.id}}/edit" method="POST">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <section class="messages">
+            {% for msg in messages %}
+            <p class="bg-danger text-light p-2">{{msg}}</p>
+            {% endfor %}
+        </section>
+        {% endif %}
+    {% endwith %}
+
+    <div class="row">
+            <label for="title-form" class="form-label">Title</label>
+            <input type="text" name="title-form" class="form-control" value="{{post.title}}">
+    </div>
+
+    <div class="row">
+            <label for="content-form"   class="form-label">Content</label>
+            <textarea name="content-form" cols="30" rows="5">{{post.content}}</textarea>
+    </div>
+    <a href="/posts/{{post.id}}" class="btn btn-info mt-3">Cancel</a>
+    <button class="btn btn-success mt-3">Edit</button>
+</form>
+{% endblock %}

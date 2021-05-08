@@ -7,28 +7,36 @@ User Form
 {% block content %}
 
 <h1>Add A New User</h1>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <section class="messages">
+        {% for msg in messages %}
+        <p class="bg-danger text-light p-2">{{msg}}</p>
+        {% endfor %}
+    </section>
+    {% endif %}
+{% endwith %}
+
 <form action="/users/new-user" method="POST" class="user-form">
     <div class="row">
-        <h4>First Name:</h3>
-        <div class="col">
-            <input type="text" name="first-name" placeholder="first name">
+        <div class="col-8">
+            <h4>First Name:</h3>
+            <input type="text" name="first-name" placeholder="first name" class="d-block">
         </div>
     </div>
     <div class="row">
         <h4>Last Name:</h4>
-        <div class="col-sm">
+        <div class="col-8">
             <input type="text" name="last-name" placeholder="last name">
         </div>
     </div>
     <div class="row">
         <h4>Profile Pic URL:</h4>
-        <div class="col-sm">
+        <div class="col-8">
             <input type="url" name="img-url" placeholder="profile pic"></div>
     </div>
     <button class="btn btn-primary mt-2">Submit User</button>
 </form>
 
-<a href="/users">
-    <button class="btn btn-secondary mt-5">Return</button>
-</a>
+<a href="/users" class="btn btn-secondary mt-5">Return</a>
 {% endblock %}
