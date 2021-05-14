@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<h1 class="display-2">Blogly Recent Posts</h1>
+<a href="/users" class="btn btn-outline-dark">Users</a>
+<a href="/tags" class="btn btn-outline-primary">Tags</a>
+{% for p in posts %}
+<h2 class="display-3">{{p.title}}</h2>
+<p class="display-7">{{p.content}}</p>
+<p class="d-inline"><strong>Tags:</strong></p>
+{% for tag in p.tags %}
+<span class="badge bg-primary"><a href="/tags/{{tag.id}}" class="text-light text-decoration-none">{{tag.name}}</a></span>
+{% endfor %}
+<p class="text-muted">Created By {{p.user.get_full_name()}} on {{p.created_at.strftime("%a %b %-d %Y, %-I:%M%P")}}</p>
+{% endfor %}
+{% endblock %}

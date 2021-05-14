@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+User Form
+{% endblock %}
+
+{% block content %}
+
+<h1>Add A New User</h1>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <section class="messages">
+        {% for msg in messages %}
+        <p class="bg-danger text-light p-2">{{msg}}</p>
+        {% endfor %}
+    </section>
+    {% endif %}
+{% endwith %}
+
+<form action="/tags/new-tag" method="POST" class="tag-form">
+    <div class="row">
+        <div class="col-8">
+            <h4>Tag Name:</h4>
+            <input type="text" name="name" placeholder="name" class="d-block">
+        </div>
+    </div>
+    <button class="btn btn-primary mt-2">Submit Tag</button>
+</form>
+
+<a href="/tags" class="btn btn-secondary mt-5">Return</a>
+{% endblock %}
